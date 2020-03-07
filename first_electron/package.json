@@ -1,0 +1,46 @@
+{
+  "name": "first_electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "build": {
+	"productionName" : "first_electron",
+	"appId": "com.electron.hello",
+	"asar": true,
+	"protocols":{
+		"name" : "first_electron",
+		"schemes" : ["first_electron"]
+	},
+	"win": {
+		"target": [
+			"zip",
+			"nsis"
+		]
+	},
+	"nsis": {
+		"oneClick": false,
+		"allowToChangeInstallationDirectory" :true
+    },
+    "directories": {
+      "buildResources": "resources/installer/",
+      "output": "dist/",
+      "app": "."
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:osx": "build --mac",
+    "build:linux": "npm run build:linux32 && npm run build:linux64",
+    "build:linux32": "build --linux --ia32",
+    "build:linux64": "build --linux --x64",
+    "build:win": "npm run build:win32 && npm run build:win64",
+    "build:win32": "build --win --ia32",
+    "build:win64": "build --win --x64"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-builder": "^22.4.0",
+    "electron-prebuilt": "^1.4.13"
+  }
+}
